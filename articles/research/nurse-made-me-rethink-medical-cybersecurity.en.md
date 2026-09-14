@@ -1,0 +1,193 @@
+---
+title: "A Nurse Made Me Rethink Medical Cybersecurity"
+date: 2026-06-23
+site_lang: en
+article_type: Research
+featured: true
+translation_key: nurse-made-me-rethink-medical-cybersecurity
+categories:
+  - Research
+  - Healthcare／Medical IoT
+tags:
+  - Healthcare
+  - Cybersecurity
+  - Medical Security
+  - Personal
+slug: nurse-made-me-rethink-medical-cybersecurity
+description: "A reflection from discussing a Medical Cybersecurity project with a clinical nurse, and realizing that engineers must first understand clinical workflows and real needs."
+seo_title: "A Nurse Made Me Rethink Medical Cybersecurity"
+seo_description: "A Medical Cybersecurity reflection about starting from AI anomaly detection and vital sign data, then rethinking needs, workflows, and the problem itself after talking with a clinical nurse."
+og_description: "Technology is not the starting point of a problem. The problem itself is. A conversation with a nurse made me rethink how Medical Cybersecurity should begin from the clinical field."
+---
+
+# A Nurse Made Me Rethink Medical Cybersecurity
+
+If this had been a few months ago, I might have confidently told someone:
+
+"I came up with a great Medical Cybersecurity project."
+
+At the time, I believed that if vital sign data in a hospital were tampered with, or if medical devices were attacked, it could directly affect patient safety.
+
+So I began thinking:
+
+Could AI and anomaly detection help medical staff identify unreasonable vital sign data?
+
+Could we build a mechanism to prevent incorrect data from entering medical systems?
+
+At the time, I thought this idea was valuable.
+
+Until I actually started discussing it with a clinical nurse.
+
+---
+
+## The Clinical Setting I Imagined
+
+At first, my idea was actually quite simple.
+
+In my understanding:
+
+* Medical devices automatically measure vital signs
+* Data is automatically sent to the system
+* If the data is abnormal, the system may not necessarily detect it
+* Therefore, an additional AI validation mechanism is needed
+
+It sounded reasonable.
+
+At least from the perspective of building a student project, it did.
+
+But the problem was:
+
+I am not a nurse.
+
+I have never truly worked in a clinical setting.
+
+---
+
+## The First Challenge
+
+When I brought the idea to a nurse for discussion,
+
+the first reaction was not praise.
+
+Instead, the nurse directly asked me:
+
+> Do you know that many vital sign devices already have abnormal alert functions?
+
+In that moment, I froze.
+
+Because I realized I had been looking at the problem from an engineer's perspective.
+
+But I had not first confirmed whether the problem actually existed.
+
+---
+
+## The Second Challenge
+
+Later, I raised more questions:
+
+What if someone enters incorrect data?
+
+What if an account is stolen?
+
+What if vital sign data is tampered with?
+
+These problems do exist.
+
+But the nurse also reminded me:
+
+> Real clinical workflows are much more complex than you imagine.
+
+Some patients' vital signs are uploaded automatically by devices.
+
+Some require manual confirmation.
+
+Some abnormal values already need to be measured again.
+
+Some abnormal data may even reflect the patient's real condition, not incorrect data.
+
+That was when I realized:
+
+What engineers call "abnormal" is not necessarily what clinicians call "abnormal."
+
+---
+
+## The Biggest Problem Was Not Technology
+
+Later, I slowly understood one thing.
+
+My biggest problem was not that my technical ability was insufficient.
+
+It was that I had started thinking about solutions too early.
+
+Before I had truly understood the problem.
+
+Many students make the same mistake when building projects, including myself.
+
+We see a phenomenon.
+
+Think of a technology.
+
+Then immediately start designing a system.
+
+But we forget to first confirm:
+
+Does this problem really exist?
+
+Do people on site really need this feature?
+
+---
+
+## Being Woken Up Is Actually a Good Thing
+
+Honestly, when your own idea is questioned, it never feels great.
+
+Especially after spending a lot of time reading and researching.
+
+But looking back now, I am actually grateful to the people who asked direct questions.
+
+Because without those discussions,
+
+I might have spent even more time building a system nobody needed.
+
+---
+
+## How I Think About Medical Cybersecurity Now
+
+Even now, I still believe Medical Cybersecurity is an extremely important field.
+
+Medical devices.
+Medical information systems.
+Patient data.
+Hospital internal networks.
+
+All of these are closely connected to patient safety.
+
+But I have also begun to understand:
+
+Real Medical Cybersecurity is not only about researching technology.
+
+More importantly, it requires understanding the clinical field.
+
+Because only by understanding the field can we know which problems are worth solving.
+
+And which problems are only imagined by engineers.
+
+---
+
+## Conclusion
+
+The most important thing this experience taught me was:
+
+> Technology is not the starting point of a problem.
+
+> The problem itself is.
+
+If I have the chance to continue working on Medical Cybersecurity research in the future,
+
+I hope I can understand healthcare before talking about security.
+
+Understand needs before talking about technology.
+
+Because no matter how powerful a system is, if it does not solve a real problem in the field, it has no meaning.
+
+And that was the biggest lesson a nurse gave me.
