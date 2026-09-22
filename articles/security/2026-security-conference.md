@@ -5,8 +5,7 @@ updated: 2026-05-15
 site_lang: zh-TW
 translation_key: 2026-security-conference
 categories:
-  - Personal
-  - Competition
+  - security
 tags:
   - CYBERSEC
   - 2026 資安大會
@@ -14,6 +13,7 @@ tags:
   - AI SOC
   - 醫療資安
   - OT 資安
+  - Competition
 banner: /assets/images/cybersec-2026.jpg
 cover: /assets/images/cybersec-2026.jpg
 slug: 2026-security-conference

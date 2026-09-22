@@ -1,27 +1,33 @@
 # Migration Report
 
+## Current collection after taxonomy review
+
+One article and all three editions were removed at the author's request. The tables below list retained articles. Other migration details describe the original migration; frontmatter primary categories were subsequently normalized to life/security/projects/research, retaining detailed labels as tags.
+
 ## Summary
 
-- Migrated articles: 31 files representing 13 independent article topics
-- Chinese articles: 13
-- English articles: 7
-- Japanese articles: 11
+- Migrated articles: 28 retained files representing 12 independent articles
+- Chinese articles: 12
+- English articles: 6
+- Japanese articles: 10
 - Migrated images: 3 files representing 2 unique image payloads
 - Source policy: prefer `source/_posts`; use `backup_posts` only when no current version exists; retain translations from `private-archive`
 - Article body policy: body text was copied without rewriting, summarizing, translating, or stylistic editing
 
 ## Categories
 
-Counts below are migrated files; the topic count is shown in parentheses.
+Primary categories come from frontmatter, not folders. Translations share one category.
 
-- `research`: 9 files (3 topics)
-- `projects`: 1 file (1 topic)
-- `engineering`: 1 file (1 topic)
-- `security`: 6 files (2 topics)
-- `ctf`: 3 files (1 topic)
-- `personal`: 11 files (5 topics)
+| Category | Public articles | Unpublished articles | Retained editions |
+|---|---:|---:|---:|
+| Life / 人生經驗 | 8 | 1 | 19 |
+| Security / 資安 | 3 | 0 | 9 |
+| Projects / 專案 | 0 | 0 | 0 |
+| Research / 研究 | 0 | 0 | 0 |
 
-Classification follows the article's main purpose rather than keyword matching. The FRC record is under `engineering`, the recent-projects update is under `projects`, and the control-team journey remains under `personal`. The InfoSec student/industry gap, medical-engineering reflection, and student-community article are observations and exploration, so they are under `research`.
+Life contains the FRC story, community/team journey (unpublished), education choices, prologue, letter to the future self, AI-tool reflection, recent-life update, InfoSec student/industry reflection, and nurse reflection. Security contains the conference overview, malware-analysis exploration, and retail security-culture article. Projects and Research remain available with empty states; no narratives were reassigned merely to populate them. Detailed tags remain separate from primary categories.
+
+Existing folders and article slugs are retained for compatibility; their names no longer classify articles. Experience is a separate event index at `/experience/`.
 
 ## Article Mapping
 
@@ -42,9 +48,6 @@ Classification follows the article's main purpose rather than keyword matching. 
 | `source/_posts/護理師讓我重新思考醫療資安.md` | `articles/research/nurse-made-me-rethink-medical-cybersecurity.md` |
 | `source/_posts/護理師讓我重新思考醫療資安.en.md` | `articles/research/nurse-made-me-rethink-medical-cybersecurity.en.md` |
 | `private-archive/languages/ja/posts/護理師讓我重新思考醫療資安.ja.md` | `articles/research/nurse-made-me-rethink-medical-cybersecurity.ja.md` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.md` | `articles/research/taiwan-student-cybersecurity-growing-apart.md` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.en.md` | `articles/research/taiwan-student-cybersecurity-growing-apart.en.md` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.ja.md` | `articles/research/taiwan-student-cybersecurity-growing-apart.ja.md` |
 | `source/_posts/frc-engineering-team.md` | `articles/engineering/frc-engineering-team.md` |
 | `source/_posts/from-nihscsed-to-control-team.md` | `articles/personal/from-nihscsed-to-control-team.md` |
 | `source/_posts/from-nihscsed-to-control-team.en.md` | `articles/personal/from-nihscsed-to-control-team.en.md` |
@@ -68,7 +71,6 @@ The following source files were classified as historical versions and were not m
 | `backup_posts/2026-security-conference.md` | `source/_posts/2026-security-conference.md` |
 | `backup_posts/from-nihscsed-to-control-team.md` | `source/_posts/from-nihscsed-to-control-team.md` |
 | `backup_posts/護理師讓我重新思考醫療資安.md` | `source/_posts/護理師讓我重新思考醫療資安.md` |
-| `backup_posts/taiwan-student-cybersecurity-growing-apart.md` | `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.md` |
 
 Translations were not treated as duplicate articles.
 
@@ -95,9 +97,6 @@ Translations were not treated as duplicate articles.
 | `source/_posts/護理師讓我重新思考醫療資安.md` | `zh/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` | `https://seraphforge.github.io/zh/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` |
 | `source/_posts/護理師讓我重新思考醫療資安.en.md` | `2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` | `https://seraphforge.github.io/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` |
 | `private-archive/languages/ja/posts/護理師讓我重新思考醫療資安.ja.md` | `ja/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` | `https://seraphforge.github.io/ja/2026/06/23/nurse-made-me-rethink-medical-cybersecurity/` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.md` | `zh/2026/06/23/taiwan-student-cybersecurity-growing-apart/` | `https://seraphforge.github.io/zh/2026/06/23/taiwan-student-cybersecurity-growing-apart/` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.en.md` | `2026/06/23/taiwan-student-cybersecurity-growing-apart/` | `https://seraphforge.github.io/2026/06/23/taiwan-student-cybersecurity-growing-apart/` |
-| `private-archive/articles/taiwan-security-students/taiwan-student-cybersecurity-growing-apart.ja.md` | `ja/2026/06/23/taiwan-student-cybersecurity-growing-apart/` | `https://seraphforge.github.io/ja/2026/06/23/taiwan-student-cybersecurity-growing-apart/` |
 | `source/_posts/from-nihscsed-to-control-team.md` | `zh/2026/05/16/from-nihscsed-to-control-team/` | `https://seraphforge.github.io/zh/2026/05/16/from-nihscsed-to-control-team/` |
 | `source/_posts/from-nihscsed-to-control-team.en.md` | `2026/05/16/from-nihscsed-to-control-team/` | `https://seraphforge.github.io/2026/05/16/from-nihscsed-to-control-team/` |
 | `private-archive/languages/ja/posts/from-nihscsed-to-control-team.ja.md` | `ja/2026/05/16/from-nihscsed-to-control-team/` | `https://seraphforge.github.io/ja/2026/05/16/from-nihscsed-to-control-team/` |
@@ -118,11 +117,12 @@ No `author` metadata was added. Existing `title`, `date`, `published`, `tags`, `
 
 ## Image Recovery
 
-- `cybersec-2026.jpg` copied from `source/images/cybersec-2026.jpg`.
-- `seraph.png` copied from `source/images/seraph.png`.
-- `casper.png` recovered from `backup_source/images/casper.png` because `source/images/casper.png` does not exist.
+- `cybersec-2026.jpg` copied from `source/images/cybersec-2026.jpg` and is served from `public/assets/images/cybersec-2026.jpg`.
+- `seraph.png` copied from `source/images/seraph.png` and is served from `public/assets/images/seraph.png`.
+- `casper.png` recovered from `backup_source/images/casper.png` because `source/images/casper.png` does not exist; it is served from `public/assets/images/casper.png`.
 - `seraph.png` and `casper.png` have identical payloads but both filenames are retained for historical path compatibility.
 - No unreferenced images were migrated.
+- During the Astro site implementation, the three files moved from repository-level `assets/images/` to Astro's static asset directory `public/assets/images/`. Their public URLs remain `/assets/images/...` and their payloads were not changed.
 
 ## Unpublished Articles
 
@@ -143,7 +143,6 @@ The Japanese translation was explicitly set to `published: false` during final h
 - `retail-work-sme-security-culture`
 - `infosec-taiwan-2026-student-industry-gap`
 - `nurse-made-me-rethink-medical-cybersecurity`
-- `taiwan-student-cybersecurity-growing-apart`
 - `from-nihscsed-to-control-team`
 
 ### Chinese and Japanese

@@ -5,7 +5,7 @@ sticky: 90
 site_lang: ja
 translation_key: ten-years-from-now-dont-forget-who-you-are-now
 categories:
-  - Personal
+  - life
 tags:
   - Future
   - Reflection

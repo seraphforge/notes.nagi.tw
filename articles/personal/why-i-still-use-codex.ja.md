@@ -4,7 +4,7 @@ date: 2026-06-25
 site_lang: ja
 translation_key: why-i-still-use-codex
 categories:
-  - Thoughts
+  - life
 tags:
   - AI
   - Codex

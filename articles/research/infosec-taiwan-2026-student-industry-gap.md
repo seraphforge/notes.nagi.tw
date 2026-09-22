@@ -5,8 +5,7 @@ site_lang: zh-TW
 translation_key: infosec-taiwan-2026-student-industry-gap
 description: 這不是一篇活動流水帳，而是我參加 InfoSec Taiwan 2026 後，對學生研究方向與企業實際資安人才需求之間落差的觀察與反思。
 categories:
-  - Personal
-  - Competition
+  - life
 tags:
   - InfoSec Taiwan
   - Cybersecurity
@@ -20,6 +19,7 @@ tags:
   - Post-Quantum Cryptography
   - Career
   - Students
+  - Competition
 slug: infosec-taiwan-2026-student-industry-gap
 seo_title: 從 InfoSec Taiwan 2026，我看見學生與企業之間的資安落差
 seo_description: 從 InfoSec Taiwan 2026 展場觀察學生資安專題與企業需求之間的差異，反思 CTF、AI、SOC、事件應變、零信任與後量子密碼學如何接近真實場域。

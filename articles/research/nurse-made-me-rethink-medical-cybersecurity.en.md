@@ -6,13 +6,13 @@ article_type: Research
 featured: true
 translation_key: nurse-made-me-rethink-medical-cybersecurity
 categories:
-  - Research
-  - Healthcare／Medical IoT
+  - life
 tags:
   - Healthcare
   - Cybersecurity
   - Medical Security
   - Personal
+  - Healthcare／Medical IoT
 slug: nurse-made-me-rethink-medical-cybersecurity
 description: "A reflection from discussing a Medical Cybersecurity project with a clinical nurse, and realizing that engineers must first understand clinical workflows and real needs."
 seo_title: "A Nurse Made Me Rethink Medical Cybersecurity"

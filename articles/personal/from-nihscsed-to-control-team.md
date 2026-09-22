@@ -6,8 +6,7 @@ updated: 2026-05-16
 site_lang: zh-TW
 translation_key: from-nihscsed-to-control-team
 categories:
-  - Personal
-  - Journey
+  - life
 tags:
   - NIHSCED
   - NIHSCED IWHC
@@ -16,6 +15,7 @@ tags:
   - 選手團隊
   - 內湖高工
   - 傳承
+  - Journey
 banner: /assets/images/seraph.png
 cover: /assets/images/seraph.png
 slug: from-nihscsed-to-control-team

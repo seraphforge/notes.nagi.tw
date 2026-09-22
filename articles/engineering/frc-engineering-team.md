@@ -3,8 +3,7 @@ title: 我終於完成了我的 FRC 之夢
 date: 2026-08-17 00:51:40
 site_lang: zh-TW
 categories:
-  - Personal
-  - Competition
+  - life
 tags:
   - FRC
   - Robotics

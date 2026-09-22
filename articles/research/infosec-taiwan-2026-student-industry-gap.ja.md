@@ -5,7 +5,7 @@ site_lang: ja
 translation_key: infosec-taiwan-2026-student-industry-gap
 description: InfoSec Taiwan 2026 に参加して、学生の研究テーマと企業が実際に求める Cybersecurity 人材・能力の間にある距離について考えた記録。
 categories:
-  - Cybersecurity
+  - life
 tags:
   - InfoSec Taiwan
   - Cybersecurity

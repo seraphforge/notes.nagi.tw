@@ -4,7 +4,7 @@ date: 2026-06-23
 site_lang: ja
 translation_key: nurse-made-me-rethink-medical-cybersecurity
 categories:
-  - Medical Security
+  - life
 tags:
   - Healthcare
   - Cybersecurity

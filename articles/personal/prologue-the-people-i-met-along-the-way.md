@@ -3,7 +3,7 @@ title: 序章：把那些一起走過的人和故事留下來
 date: 2026-06-23
 sticky: 100
 categories:
-  - Personal
+  - life
 tags:
   - Introduction
   - Personal

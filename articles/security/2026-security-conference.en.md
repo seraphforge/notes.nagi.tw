@@ -7,8 +7,7 @@ article_type: Personal
 featured: true
 translation_key: 2026-security-conference
 categories:
-  - Personal
-  - Competition
+  - security
 tags:
   - CYBERSEC
   - 2026 Cybersecurity Conference
@@ -16,6 +15,7 @@ tags:
   - AI SOC
   - Medical Cybersecurity
   - OT Security
+  - Competition
 banner: /assets/images/cybersec-2026.jpg
 cover: /assets/images/cybersec-2026.jpg
 slug: 2026-security-conference

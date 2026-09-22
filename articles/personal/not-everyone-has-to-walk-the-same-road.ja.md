@@ -5,7 +5,7 @@ updated: 2026-05-15
 site_lang: ja
 translation_key: not-everyone-has-to-walk-the-same-road
 categories:
-  - Personal Story
+  - life
 tags:
   - my story
   - Growth

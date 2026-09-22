@@ -6,13 +6,13 @@ article_type: Research
 featured: true
 translation_key: nurse-made-me-rethink-medical-cybersecurity
 categories:
-  - Research
-  - Healthcare／Medical IoT
+  - life
 tags:
   - Healthcare
   - Cybersecurity
   - Medical Security
   - Personal
+  - Healthcare／Medical IoT
 slug: nurse-made-me-rethink-medical-cybersecurity
 description: 從與臨床護理師討論醫療資安專題的經驗出發，反思工程師是否真的理解醫療現場、臨床流程與需求。
 seo_title: 護理師讓我重新思考醫療資安

@@ -3,7 +3,7 @@ title: 十年後的我，請不要忘記現在的自己
 date: 2026-06-23
 sticky: 90
 categories:
-  - Personal
+  - life
 tags:
   - Future
   - Reflection

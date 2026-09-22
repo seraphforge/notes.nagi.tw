@@ -4,7 +4,7 @@ date: 2026-07-18
 site_lang: ja
 translation_key: retail-work-sme-security-culture
 categories:
-  - Cybersecurity
+  - security
 tags:
   - Cybersecurity
   - Security Culture

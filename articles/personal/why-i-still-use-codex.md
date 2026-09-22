@@ -2,7 +2,7 @@
 title: 我再也不相信 Codex，但我還是會繼續用它
 date: 2026-06-25
 categories:
-  - Thoughts
+  - life
 tags:
   - AI
   - Codex

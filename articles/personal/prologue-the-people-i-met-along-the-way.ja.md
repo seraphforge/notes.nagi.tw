@@ -5,7 +5,7 @@ sticky: 100
 site_lang: ja
 translation_key: prologue-the-people-i-met-along-the-way
 categories:
-  - Personal
+  - life
 tags:
   - Introduction
   - Personal

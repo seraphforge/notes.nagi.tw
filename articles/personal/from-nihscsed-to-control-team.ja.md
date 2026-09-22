@@ -6,7 +6,7 @@ updated: 2026-05-16
 site_lang: ja
 translation_key: from-nihscsed-to-control-team
 categories:
-  - Personal Story
+  - life
 tags:
   - NIHSCED
   - NIHSCED IWHC

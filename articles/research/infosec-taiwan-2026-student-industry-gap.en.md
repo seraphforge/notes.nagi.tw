@@ -5,8 +5,7 @@ site_lang: en
 translation_key: infosec-taiwan-2026-student-industry-gap
 description: This is not a simple event recap. It is a reflection on the gap I saw at InfoSec Taiwan 2026 between student cybersecurity projects and the security capabilities companies actually need.
 categories:
-  - Personal
-  - Competition
+  - life
 tags:
   - InfoSec Taiwan
   - Cybersecurity
@@ -20,6 +19,7 @@ tags:
   - Post-Quantum Cryptography
   - Career
   - Students
+  - Competition
 slug: infosec-taiwan-2026-student-industry-gap
 seo_title: What InfoSec Taiwan 2026 Showed Me About the Gap Between Students and Industry
 seo_description: A reflection from InfoSec Taiwan 2026 on the gap between student cybersecurity projects and industry needs, covering CTF, AI, SOC, incident response, Zero Trust, and post-quantum cryptography.

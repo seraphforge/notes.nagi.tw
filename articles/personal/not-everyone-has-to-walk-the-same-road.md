@@ -3,7 +3,7 @@ title: 不是每個人都一定要走一樣的路
 date: 2026-04-18
 updated: 2026-05-15
 categories:
-  - 個人故事
+  - life
 tags:
   - my story
   - 成長

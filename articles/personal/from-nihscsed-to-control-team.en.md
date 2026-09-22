@@ -6,8 +6,7 @@ updated: 2026-05-16
 site_lang: en
 translation_key: from-nihscsed-to-control-team
 categories:
-  - Personal
-  - Journey
+  - life
 tags:
   - NIHSCED
   - NIHSCED IWHC
@@ -16,6 +15,7 @@ tags:
   - Competition Team
   - Neihu Vocational High School
   - Legacy
+  - Journey
 banner: /assets/images/seraph.png
 cover: /assets/images/seraph.png
 slug: from-nihscsed-to-control-team

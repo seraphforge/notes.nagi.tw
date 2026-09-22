@@ -6,8 +6,7 @@ article_type: Personal
 featured: true
 translation_key: recent-projects-and-life-update
 categories:
-  - Personal
-  - Reflection
+  - life
 tags:
   - 近況
   - 資安
@@ -16,6 +15,7 @@ tags:
   - Homelab
   - Raspberry Pi
   - 比賽
+  - Reflection
 slug: recent-projects-and-life-update
 description: 記一下最近在資安、醫療、Edge AI、Homelab、樹莓派和各種比賽之間來回挖坑的近況。
 seo_title: 好久沒更新了，來記一下最近到底在幹嘛

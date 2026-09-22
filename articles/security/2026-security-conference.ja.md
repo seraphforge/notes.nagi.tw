@@ -5,7 +5,7 @@ updated: 2026-05-15
 site_lang: ja
 translation_key: 2026-security-conference
 categories:
-  - Cybersecurity
+  - security
 tags:
   - CYBERSEC
   - 2026 Cybersecurity Conference
