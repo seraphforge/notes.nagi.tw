@@ -1,3 +1,4 @@
+import { withBase } from '../lib/urls';
 import rss from '@astrojs/rss';
 import { getPublicArticles } from '../lib/articles';
 export async function GET(context) {
@@ -8,5 +9,5 @@ export async function GET(context) {
     link: article.href,
     categories: [article.category, ...article.data.tags],
   }));
-  return rss({ title: 'Nagi Notes', description: 'Life, Security, Projects, Research — and things worth keeping.', site: context.site, items });
+  return rss({ title: 'Nagi Notes', description: 'Life, Security, Projects, Research — and things worth keeping.', site: new URL(withBase('/'), context.site), items });
 }

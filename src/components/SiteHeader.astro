@@ -1,15 +1,16 @@
 ---
+import { withBase } from '../lib/urls';
 const path = Astro.url.pathname;
 const links = [['/articles/', 'Articles'], ['/topics/', 'Topics'], ['/experience/', 'Experience'], ['/archive/', 'Archive'], ['/about/', 'About']];
 const languages = [['zh', '中'], ['en', 'EN'], ['ja', '日']] as const;
 ---
 <header class="header">
   <div class="container nav">
-    <a class="brand" href="/">Nagi <span>Notes</span></a>
+    <a class="brand" href={withBase('/')}>Nagi <span>Notes</span></a>
     <button class="menu" aria-expanded="false" aria-controls="nav-links">Menu</button>
     <div class="nav-cluster">
       <nav id="nav-links" aria-label="Main navigation">
-        {links.map(([href, label]) => <a href={href} aria-current={path.startsWith(href) ? 'page' : undefined}>{label}</a>)}
+        {links.map(([href, label]) => <a href={withBase(href)} aria-current={path.startsWith(withBase(href)) ? 'page' : undefined}>{label}</a>)}
         <a href="https://nagi.tw">nagi.tw ↗</a>
       </nav>
       <div class="language-switcher" data-language-switcher role="group" aria-label="Article language">

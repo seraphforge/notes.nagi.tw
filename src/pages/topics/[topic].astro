@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../lib/urls';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleList from '../../components/ArticleList.astro';
 import { getPublicArticleGroups } from '../../lib/articles';
@@ -28,7 +29,7 @@ const { title, groups, legacy } = Astro.props;
   <header class="container page-intro topic-intro">
     <p class="eyebrow">{legacy ? 'Earlier topic index' : 'Topic'} · {groups.length} notes</p>
     <h1>{title}</h1>
-    <p>{legacy ? '此索引也保留舊主題中的文章，不代表目前的主要分類。' : '同一個主題，可以出現在不同的人生經驗、資安筆記、專案與研究中。'} <a href="/articles/">Browse Articles →</a></p>
+    <p>{legacy ? '此索引也保留舊主題中的文章，不代表目前的主要分類。' : '同一個主題，可以出現在不同的人生經驗、資安筆記、專案與研究中。'} <a href={withBase('/articles/')}>Browse Articles →</a></p>
   </header>
   <section class="container topic-index">
     <div class="index-heading">

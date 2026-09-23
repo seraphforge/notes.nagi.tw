@@ -1,3 +1,4 @@
+import { withBase } from './urls';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Topic } from './topics';
 import type { Category } from './categories';
@@ -25,7 +26,7 @@ export function normalize(entry: CollectionEntry<'articles'>): Article {
   const routeSlug = entry.data.slug ?? stem.replace(suffix, '');
   const key = entry.data.translation_key ?? stem.replace(suffix, '');
   const topic = entry.id.split('/')[0] as Topic;
-  const href = `/articles/${routeSlug}/${language === 'zh' ? '' : `${language}/`}`;
+  const href = withBase(`/articles/${routeSlug}/${language === 'zh' ? '' : `${language}/`}`);
   return Object.assign(entry, { topic, category: entry.data.categories[0], language, key, routeSlug, href });
 }
 

@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/urls';
 import BaseLayout from '../layouts/BaseLayout.astro';
 // Publicly documented participation only; exact event dates are not established by these articles.
 const events = [
@@ -21,7 +22,7 @@ const events = [
         <p class="eyebrow">{event.kind}</p>
         <h3>{event.name}</h3>
         <p>{event.role}</p>
-        <a href={`/articles/${event.article}/`}>閱讀相關文章 →</a>
+        <a href={withBase(`/articles/${event.article}/`)}>閱讀相關文章 →</a>
       </li>)}
     </ol>
   </section>

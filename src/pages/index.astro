@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/urls';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleList from '../components/ArticleList.astro';
 import { getPublicArticleGroups } from '../lib/articles';
@@ -22,12 +23,12 @@ const recent = groups.slice(0, 3);
           <p class="eyebrow">01 · Writing</p>
           <h2 id="latest-title">Latest Notes</h2>
         </div>
-        <a class="button-link" href="/articles/">View all articles →</a>
+        <a class="button-link" href={withBase('/articles/')}>View all articles →</a>
       </div>
       <ArticleList groups={recent} />
       <nav class="notes-links" aria-label="More writing">
-        <a href="/articles/">View all articles →</a>
-        <a href="/archive/">Archive →</a>
+        <a href={withBase('/articles/')}>View all articles →</a>
+        <a href={withBase('/archive/')}>Archive →</a>
       </nav>
     </section>
 
@@ -36,13 +37,13 @@ const recent = groups.slice(0, 3);
       <h2 id="topics-title">Follow a thread.</h2>
       <nav aria-label="Article categories">
         {categoryOrder.map((category) => (
-          <a href={`/articles/?category=${category}`} title={categoryInfo[category].description}>
+          <a href={withBase(`/articles/?category=${category}`)} title={categoryInfo[category].description}>
             <span>{categoryInfo[category].title}<small>{categoryInfo[category].zh}</small></span>
             <span class="topic-count">{groups.filter((group) => group.category === category).length}</span>
           </a>
         ))}
       </nav>
-      <p><a class="personal-link" href="/topics/">Browse detailed topics →</a></p>
+      <p><a class="personal-link" href={withBase('/topics/')}>Browse detailed topics →</a></p>
       <p class="notes-origin">By Nagi.</p>
       <a class="personal-link" href="https://nagi.tw">nagi.tw ↗</a>
     </aside>
