@@ -11,7 +11,7 @@ const languages = [['zh', '中'], ['en', 'EN'], ['ja', '日']] as const;
     <div class="nav-cluster">
       <nav id="nav-links" aria-label="Main navigation">
         {links.map(([href, label]) => <a href={withBase(href)} aria-current={path.startsWith(withBase(href)) ? 'page' : undefined}>{label}</a>)}
-        <a href="https://nagi.tw">nagi.tw ↗</a>
+        <a href={withBase('/')}>nagi.tw ↗</a>
       </nav>
       <div class="language-switcher" data-language-switcher role="group" aria-label="Article language">
         {languages.map(([language, label]) => <button type="button" data-language-select={language} aria-pressed={language === 'zh'}>{label}</button>)}
@@ -31,8 +31,18 @@ const languages = [['zh', '中'], ['en', 'EN'], ['ja', '日']] as const;
     navigation?.toggleAttribute('data-open', !open);
   });
   function storedLanguage(): Language | undefined {
-    const stored = localStorage.getItem('nagi-article-language');
-    return languageOrder.includes(stored as Language) ? stored as Language : undefined;
+    try {
+      const stored = localStorage.getItem('nagi-article-language');
+      return languageOrder.includes(stored as Language) ? stored as Language : undefined;
+    } catch { return undefined; }
+  }
+  function storeLanguage(language: Language) {
+    try { localStorage.setItem('nagi-article-language', language); } catch { /* Preference storage is optional. */ }
+  }
+  const hasLanguageContent = document.documentElement.hasAttribute('data-article-page') || Boolean(document.querySelector('[data-language-group]'));
+  for (const button of languageButtons) {
+    button.disabled = !hasLanguageContent;
+    button.title = hasLanguageContent ? 'Article language (page navigation is not translated)' : 'This page has no translated versions';
   }
   function requestedLanguage(): Language { return storedLanguage() ?? 'zh'; }
   function actualLanguage(group: HTMLElement, requested: Language): Language | undefined {
@@ -41,13 +51,13 @@ const languages = [['zh', '中'], ['en', 'EN'], ['ja', '日']] as const;
     return fallbackOrder.find((language) => available.has(language));
   }
   function applyLanguage(requested: Language, persist = true) {
-    if (persist) localStorage.setItem('nagi-article-language', requested);
+    if (persist) storeLanguage(requested);
     document.documentElement.dataset.articleLanguage = requested;
     for (const button of languageButtons) button.setAttribute('aria-pressed', String(button.dataset.languageSelect === requested));
     const articleLanguageLinks = [...document.querySelectorAll<HTMLAnchorElement>('[data-article-language-link]')];
     if (document.documentElement.hasAttribute('data-article-page') && articleLanguageLinks.length) {
       const available = new Map(articleLanguageLinks.map((link) => [link.dataset.articleLanguageLink, link]));
-      const target = available.get(requested) ?? available.get('zh') ?? available.get('en') ?? available.get('ja');
+      const target = available.get(requested) ?? available.get(document.documentElement.dataset.currentArticleLanguage ?? '') ?? available.get('zh') ?? available.get('en') ?? available.get('ja');
       const actual = target?.dataset.articleLanguageLink as Language | undefined;
       document.documentElement.dataset.actualLanguage = actual ?? '';
       document.documentElement.toggleAttribute('data-language-fallback', Boolean(actual && actual !== requested));
@@ -66,15 +76,13 @@ const languages = [['zh', '中'], ['en', 'EN'], ['ja', '日']] as const;
   }
   for (const button of languageButtons) button.addEventListener('click', () => applyLanguage(button.dataset.languageSelect as Language));
   for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-article-language-link]')) {
-    link.addEventListener('click', () => localStorage.setItem('nagi-article-language', link.dataset.articleLanguageLink as Language));
+    link.addEventListener('click', () => storeLanguage(link.dataset.articleLanguageLink as Language));
   }
   const routeLanguage = document.documentElement.dataset.currentArticleLanguage as Language | undefined;
   if (routeLanguage && languageOrder.includes(routeLanguage)) {
-    const requested = storedLanguage() ?? routeLanguage;
-    if (!storedLanguage()) localStorage.setItem('nagi-article-language', routeLanguage);
-    applyLanguage(requested, false);
+    applyLanguage(routeLanguage, false);
   } else {
-    applyLanguage(requestedLanguage(), false);
+    applyLanguage(hasLanguageContent ? requestedLanguage() : 'zh', false);
   }
 </script>
 <style>

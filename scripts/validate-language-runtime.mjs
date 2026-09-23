@@ -2,8 +2,10 @@ import { spawn } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import config from '../astro.config.mjs';
 
-const baseUrl = process.env.NAGI_TEST_URL ?? 'http://127.0.0.1:4321';
+const basePath = `${config.base.replace(/\/$/, '')}/`;
+const baseUrl = (process.env.NAGI_TEST_URL ?? `http://127.0.0.1:4321${basePath}`).replace(/\/$/, '');
 const chromeCandidates = process.platform === 'win32'
   ? [
       'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
@@ -82,7 +84,7 @@ try {
   await command('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
   const waitForPage = async (pathname) => {
     for (let attempt = 0; attempt < 100; attempt++) {
-      const ready = await evaluate(`location.pathname === ${JSON.stringify(pathname)} && document.readyState === 'complete'`);
+      const ready = await evaluate(`location.pathname === ${JSON.stringify(`${new URL(baseUrl).pathname.replace(/\/$/, '')}${pathname}`)} && document.readyState === 'complete'`);
       if (ready) return;
       await delay(50);
     }
@@ -153,7 +155,7 @@ try {
     transitions.push(`${language}:${state.visibleTitles[0]}`);
   }
 
-  for (const [category, count] of [['life', 8], ['security', 3], ['projects', 0], ['research', 0], ['all', 11]]) {
+  for (const [category, count] of [['life', 9], ['security', 3], ['projects', 0], ['research', 0], ['all', 12]]) {
     await evaluate(`document.querySelector('[data-category-filter="${category}"]').click()`);
     const visible = await evaluate(`[...document.querySelectorAll('[data-article-group]')].filter((group) => !group.hidden).map((group) => group.dataset.category)`);
     expect(visible.length === count, `${category}: expected ${count} groups, found ${visible.length}`);
@@ -186,8 +188,8 @@ try {
 
   await navigate('/articles/frc-engineering-team/');
   expect(await evaluate(`localStorage.getItem('nagi-article-language')`) === 'en', 'fallback article route overwrote the English preference');
-  expect(await evaluate(`document.querySelector('[data-language-select="en"]').getAttribute('aria-pressed')`) === 'true', 'fallback article route did not retain the English switch state');
-  expect(await evaluate(`document.documentElement.hasAttribute('data-language-fallback')`) === true, 'fallback article route did not expose fallback state');
+  expect(await evaluate(`document.querySelector('[data-language-select="zh"]').getAttribute('aria-pressed')`) === 'true', 'article route must select its actual language');
+  expect(await evaluate(`document.documentElement.hasAttribute('data-language-fallback')`) === false, 'direct article route should not expose fallback state');
   expect(await evaluate(`document.querySelector('.article .eyebrow [data-actual-language]')?.textContent.trim()`) === '中文', 'fallback article route did not identify the Chinese edition');
 
   await switchLanguage('zh');
@@ -207,13 +209,43 @@ try {
     expect(await evaluate(`document.documentElement.scrollWidth <= innerWidth`), 'Mobile Articles page overflows');
     expect(await evaluate(`document.querySelectorAll('[data-category-filter]').length`) === 5, 'Mobile article categories missing');
     await evaluate(`document.querySelector('[data-category-filter="life"]').click()`);
-    expect(await evaluate(`document.querySelectorAll('[data-article-group]:not([hidden])').length`) === 8, 'Mobile category filtering failed');
+    expect(await evaluate(`document.querySelectorAll('[data-article-group]:not([hidden])').length`) === 9, 'Mobile category filtering failed');
     expect(await evaluate(`(() => { const style = getComputedStyle(document.querySelector('[data-category-filter="life"]')); return style.borderBottomWidth === '1px' && style.borderBottomColor !== 'rgba(0, 0, 0, 0)' && style.borderRadius === '0px'; })()`), 'Active category must have a thin underline without rounded corners');
   }
   console.log('Articles category navigation, language persistence, and mobile wrapping: PASS');
   console.log(`Runtime language transitions: ${transitions.join(' -> ')}`);
   console.log('Desktop and mobile Notes homepage: PASS');
   console.log('Runtime fallback, navigation persistence, indexes, topic, archive, and article routing: PASS');
+  await navigate('/');
+  await waitForPage('/');
+  await switchLanguage('zh');
+  await navigate('/articles/2026-security-conference/en/');
+  expect(await evaluate(`document.documentElement.dataset.currentArticleLanguage`) === 'en', 'Direct English URL must not be overridden by stored Chinese preference');
+  const groups = JSON.parse(readFileSync(new URL('../dist/search-index.json', import.meta.url), 'utf8'));
+  let switches = 0;
+  for (const group of groups) {
+    for (const variant of Object.values(group.variants)) {
+      for (const requested of ['zh', 'en', 'ja']) {
+        const route = variant.url.slice(basePath.length - 1);
+        await navigate(route);
+        await switchLanguage(requested);
+        const target = group.variants[requested] ?? variant;
+        await waitForPage(target.url.slice(basePath.length - 1));
+        expect(await evaluate(`document.documentElement.dataset.currentArticleLanguage`) === target.language, `Wrong edition for ${group.key}: ${requested}`);
+        switches++;
+      }
+    }
+  }
+  for (const path of ['/about/', '/experience/', '/topics/']) {
+    await navigate(path);
+    expect(await evaluate(`[...document.querySelectorAll('[data-language-select]')].every(button => button.disabled)`) === true, `${path}: untranslated page has active language controls`);
+  }
+  console.log(`Browser article language switches and fallbacks: ${switches} PASS`);
+  await command('Page.addScriptToEvaluateOnNewDocument', { source: `Object.defineProperty(window, 'localStorage', { get() { throw new DOMException('Blocked', 'SecurityError'); } });` });
+  await navigate('/articles/2026-security-conference/');
+  await switchLanguage('ja');
+  await waitForPage('/articles/2026-security-conference/ja/');
+  console.log('Direct language URLs and switching with blocked storage: PASS');
 } finally {
   socket?.close();
   processHandle.kill();

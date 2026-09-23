@@ -1,3 +1,4 @@
+import config from '../astro.config.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +12,7 @@ const hidden = 'from-nihscsed-to-control-team';
 const security = new Set(['2026-security-conference', 'ctf-meets-malware-analysis-windows', 'retail-work-sme-security-culture']);
 const files = walk(join(root, 'articles')).filter((file) => /\.mdx?$/.test(file));
 assert.ok(!files.some((file) => file.includes(removed)), 'Removed article still exists in the content collection');
-assert.equal(files.length, 28, 'Preserve all other language editions');
+assert.equal(files.length, 29, 'Preserve all other language editions');
 const groups = new Map();
 for (const file of files) {
   const source = readFileSync(file, 'utf8');
@@ -21,11 +22,12 @@ for (const file of files) {
   assert.equal(data.published === false, key === hidden, `Publication state changed: ${file}`);
   groups.set(key, data);
 }
-assert.equal(groups.size, 12);
+assert.equal(groups.size, 13);
 const dist = join(root, 'dist');
+const siteRoot = new URL(`${config.base.replace(/\/$/, '')}/`, config.site);
 const search = JSON.parse(readFileSync(join(dist, 'search-index.json'), 'utf8'));
-assert.equal(search.length, 11);
-assert.deepEqual(Object.fromEntries(['life', 'security', 'projects', 'research'].map((category) => [category, search.filter((group) => group.category === category).length])), { life: 8, security: 3, projects: 0, research: 0 });
+assert.equal(search.length, 12);
+assert.deepEqual(Object.fromEntries(['life', 'security', 'projects', 'research'].map((category) => [category, search.filter((group) => group.category === category).length])), { life: 9, security: 3, projects: 0, research: 0 });
 for (const group of search) {
   assert.equal(group.category, security.has(group.key) ? 'security' : 'life');
   assert.ok(group.languages.includes('zh'));
@@ -38,9 +40,10 @@ for (const file of walk(dist).filter((file) => /\.(html|xml|json|js)$/.test(file
   assert.ok(!/[\uE000-\uF8FF\uFFFD]/u.test(text), `Invalid encoding in ${relative(dist, file)}`);
   if (!file.endsWith('.html')) continue;
   for (const match of text.matchAll(/(?:href|src)="([^"#]+)"/g)) {
-    const url = new URL(match[1].replaceAll('&amp;', '&'), `https://notes.nagi.tw/${relative(dist, file).replaceAll('\\', '/')}`);
-    if (url.origin !== 'https://notes.nagi.tw') continue;
-    const path = decodeURIComponent(url.pathname);
+    const url = new URL(match[1].replaceAll('&amp;', '&'), new URL(relative(dist, file).replaceAll('\\', '/'), siteRoot));
+    if (url.origin !== siteRoot.origin) continue;
+    assert.ok(url.pathname.startsWith(siteRoot.pathname), `Outside base: ${url}`);
+    const path = decodeURIComponent(url.pathname.slice(siteRoot.pathname.length));
     const target = join(dist, path);
     assert.ok(existsSync(target) || existsSync(join(target, 'index.html')), `Broken local reference: ${relative(dist, file)} -> ${path}`);
     checkedLinks++;

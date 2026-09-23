@@ -1,3 +1,4 @@
+import config from '../astro.config.mjs';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -56,9 +57,9 @@ for (const className of ['identity-hero', 'selected-work', 'currently', 'persona
   if (new RegExp(`class="[^"]*\\b${className}\\b[^"]*"`).test(pages.home)) failures.push(`personal portfolio remains on Notes: ${className}`);
 }
 for (const topic of ['life', 'security', 'projects', 'research']) {
-  if (!pages.home.includes(`href="/articles/?category=${topic}"`)) failures.push(`Notes homepage missing category ${topic}`);
+  if (!pages.home.includes(`href="${config.base.replace(/\/$/, '')}/articles/?category=${topic}"`)) failures.push(`Notes homepage missing category ${topic}`);
 }
-if (!pages.home.includes('href="https://nagi.tw"')) failures.push('Notes homepage missing personal-site backlink');
+if (!pages.home.includes(`href="${config.base.replace(/\/$/, '')}/"`)) failures.push('Notes homepage missing homepage backlink');
 requireClass('articles', 'article-index');
 requireClass('articles', 'category-navigation');
 for (const category of ['all', 'life', 'security', 'projects', 'research']) {
@@ -73,9 +74,9 @@ const classCount = (html, className) =>
   [...html.matchAll(/class="([^"]+)"/g)].filter((match) => match[1].split(/\s+/).includes(className)).length;
 
 if (classCount(pages.home, 'article-group') !== 3) failures.push('home must show exactly 3 recent notes');
-if (classCount(pages.articles, 'article-group') !== 11) failures.push('articles must show 11 public logical topics');
+if (classCount(pages.articles, 'article-group') !== 12) failures.push('articles must show 12 public logical topics');
 if (classCount(pages.home, 'article-group') !== 3) failures.push('home notes must show 3 logical topics');
-if (classCount(pages.archive, 'archive-row') !== 11) failures.push('archive must show 11 public logical topics');
+if (classCount(pages.archive, 'archive-row') !== 12) failures.push('archive must show 12 public logical topics');
 
 for (const [name, html] of Object.entries(pages)) {
   if (!html.includes('data-language-switcher')) failures.push(`${name} missing global language switcher`);
